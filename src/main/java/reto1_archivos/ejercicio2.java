@@ -24,7 +24,7 @@ public class ejercicio2 {
         System.out.println("introduce un elemento");
         String elemento = scanner.nextLine();
 
-        File directorioCompleto = new File(directorio+"\\"+elemento);
+        File directorioCompleto = new File(directorio,elemento);
 
 
     }
