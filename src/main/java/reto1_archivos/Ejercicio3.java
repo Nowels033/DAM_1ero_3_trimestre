@@ -78,7 +78,7 @@ public class Ejercicio3 {
     public static void listarDirectorio(File[] arrayFile ){
         int contadorFich =0;
 
-        if (arrayFile != null) {
+        if (arrayFile != null && arrayFile.length > 0)  {
 
             for (int i = 0; i < arrayFile.length; i++) {
 
@@ -93,9 +93,9 @@ public class Ejercicio3 {
 
                     System.out.println("Directorio : "+arrayFile[i].getAbsoluteFile());
 
-                    if (arrayFile[i].isDirectory()){
+
                         listarDirectorio(arrayFile[i].listFiles());
-                    }
+
 
 
                 }
@@ -103,6 +103,9 @@ public class Ejercicio3 {
             }
             System.out.println("El tamaño de los ficheros del directorio : "+arrayFile[0].getParent()+ " \nEs de : "+contadorFich);
 
+        }
+        else {
+            System.out.println(" El direcorio esta vacio o no contiene archivos");
         }
     }
 
