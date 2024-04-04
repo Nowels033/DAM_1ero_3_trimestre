@@ -93,7 +93,7 @@ public class Ejercicio3 {
 
                     System.out.println("Directorio : "+arrayFile[i].getAbsoluteFile());
 
-                    if (arrayFile[i] != null){
+                    if (arrayFile[i].isDirectory()){
                         listarDirectorio(arrayFile[i].listFiles());
                     }
 
