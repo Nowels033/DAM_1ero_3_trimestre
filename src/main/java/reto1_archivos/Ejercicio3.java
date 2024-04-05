@@ -50,24 +50,14 @@ public class Ejercicio3 {
 //                }
 //            }
             System.out.println("directorios dentro de :"+directorio);
-            listarDirectorio(directorios);
+            //listarDirectorio(directorios);
+
+
 
 
             System.out.println("introduce un caracter para sacar los ficheros de los directorio que empiezen por ese caracter");
             char filtro = sc.nextLine().toLowerCase().charAt(0);
-//            File [] directoriosFiltro = dir2.listFiles(new FilenameFilter() {
-//                @Override
-//                public boolean accept(File dir, String name) {
-//                   if (name.toLowerCase().charAt(0) == filtro ){
-//                       return true;
-//                   }
-//                   else{
-//                       return false;
-//                   }
-//                }
-//            });
-//
-//            listarDirectorioFiltro(directoriosFiltro);
+            listarDirectorioFiltro(dir2,filtro);
 
         }
         else{
@@ -89,7 +79,7 @@ public class Ejercicio3 {
 
 
                 }
-                if (arrayFile[i].isDirectory()){
+                if (arrayFile[i].isDirectory() ){
 
                     System.out.println("Directorio : "+arrayFile[i].getAbsoluteFile());
 
@@ -111,10 +101,23 @@ public class Ejercicio3 {
 
     //        Listar los ficheros de un directorio que empiecen por una letra en particular (utilizar el método charAt())
 
-    public static void listarDirectorioFiltro(File[] arrayFile ){
+    public static void listarDirectorioFiltro(File dir2 ,char filtro){
+        Scanner sc = new Scanner(System.in);
         int contadorFich =0;
+        String nombre = " ";
 
-        if (arrayFile != null) {
+        File [] arrayFile = dir2.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                if (name.toLowerCase().charAt(0) == filtro ){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        });
+        if (arrayFile != null && arrayFile.length > 0)  {
 
             for (int i = 0; i < arrayFile.length; i++) {
 
@@ -125,18 +128,24 @@ public class Ejercicio3 {
 
 
                 }
-                if (arrayFile[i].isDirectory()){
+                if (arrayFile[i].isDirectory() ){
 
                     System.out.println("Directorio : "+arrayFile[i].getAbsoluteFile());
 
+                    nombre = arrayFile[i].getName();
 
-                    listarDirectorio(arrayFile[i].listFiles());
+                    listarDirectorioFiltro(arrayFile[i],filtro);
+
 
                 }
 
             }
-            System.out.println("El tamaño de los ficheros del directorio : "+arrayFile[0].getParent()+ " \nEs de : "+contadorFich);
+            System.out.println("El tamaño de los ficheros del directorio : "+arrayFile[0].getParent()+"\\"+nombre+ " \nEs de : "+contadorFich);
 
         }
+        else {
+            System.out.println(" El direcorio esta vacio o no contiene archivos");
+        }
     }
+
 }
