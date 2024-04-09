@@ -30,7 +30,7 @@ public class Ejercicio1 {
     }
 
     public static StringBuilder leer(String ruta) {
-        StringBuilder retorno = new StringBuilder("");
+        StringBuilder retorno = new StringBuilder();
         try {
             FileReader entrada = new FileReader(ruta);
             try {
@@ -50,7 +50,7 @@ public class Ejercicio1 {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return retorno.reverse();
+        return retorno;
     }
 
     public static void escribir(String cadena) {
