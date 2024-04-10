@@ -24,42 +24,59 @@ public class Ejercicio1 {
 
     public static void main(String[] args) {
 
-        leer("C:\\dir1\\leer.txt");
-        System.out.println(leer("C:\\dir1\\leer.txt"));
+
+
+        System.out.println( leer("C:\\dir1\\leer.txt"));
+        escribir(leer("C:\\dir1\\leer.txt"));
+
 
     }
 
-    public static StringBuilder leer(String ruta) {
-        StringBuilder retorno = new StringBuilder();
+    public static String leer(String ruta) {
+        StringBuilder retorno = new StringBuilder("");
+        FileReader entrada = null;
+        String añadir = "";
         try {
-            FileReader entrada = new FileReader(ruta);
+            entrada = new FileReader(ruta);
             try {
                 int c;
                 do {
                     c = entrada.read();
                     if (c != -1) {
-
-                        System.out.print((char) c);
-                        retorno.append(c);
+                        //System.out.print((char) c);
+                        añadir += String.valueOf((char) c);
                     }
 
                 } while (c != -1);
+
+                retorno.append(añadir);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                entrada.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
-        return retorno;
-    }
+       // retorno.reverse();
+       /* System.out.println();
+        System.out.println( retorno.toString());*/
+        retorno.reverse();
+        String retorno2 = retorno.toString();
+        return retorno2;
+     }
 
     public static void escribir(String cadena) {
 
-       cadena = " \n hoal que ase pepemel";
+       //cadena = " \n hoal que ase pepemel";
 
         FileWriter escribiendo = null;
         try {
-            escribiendo = new FileWriter("C:\\dir1\\f1.txt",true);
+            escribiendo = new FileWriter("C:\\dir1\\textoinvertido.txt",true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
