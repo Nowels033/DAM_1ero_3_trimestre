@@ -13,74 +13,64 @@ Hacer un programa que pida al usuario una palabra por
 teclado y diga cuántas veces aparece esa palabra en el fichero "parrafo.txt".*/
 public class Ejercicio5 {
 
-
     public static void main(String[] args) {
-        leer("C:\\dir1\\leer.txt");
-
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce una palabra:");
+        String introducido = sc.nextLine().toLowerCase();
+        leer("C:\\dir1\\leer.txt", introducido);
+        sc.close();
     }
 
-    public static String leer(String ruta) {
-        StringBuilder retorno = new StringBuilder("");
+    public static void leer(String ruta, String introducido) {
+        StringBuilder retorno = new StringBuilder();
         FileReader entrada = null;
-        String añadir = "",stringArray;
-        Scanner sc = new Scanner(System.in);
-        File arch = new File(ruta);
-        System.out.println("introduce una palabra");
-        String introducido = sc.nextLine();
         ArrayList<String> array = new ArrayList<>();
 
         try {
+            File arch = new File(ruta);
             if (arch.exists()) {
                 entrada = new FileReader(ruta);
-                try {
+                int c;
+                StringBuilder palabra = new StringBuilder();
 
-                    int c;
-                    char j;
-                    do {
-                        c = entrada.read();
-                        if (c != -1) {
-                            j=(char) c;
-                            //System.out.print((char) c);
-                            if (j != ' ' && j != '\n' ){
-                                añadir += j;
-                            }
-
-                            if (j == ' ' || j == '\n' || j=='\r'){
-                                stringArray = añadir;
-                                añadir="";
-                                array.add(stringArray);
-                            }
+                while ((c = entrada.read()) != -1) {
+                    char j = (char) c;
+                    if (Character.isLetterOrDigit(j)) {
+                        palabra.append(j);
+                    } else {
+                        if (palabra.length() > 0) {
+                            array.add(palabra.toString());
+                            palabra.setLength(0);
                         }
-
-                    } while (c != -1);
-
-                    retorno.append(añadir);
-                    entrada.close();
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    }
+                    retorno.append(j);
                 }
+
+                // Agregar la última palabra si es que hay una al final del archivo
+                if (palabra.length() > 0) {
+                    array.add(palabra.toString());
+                }
+
+                entrada.close();
             } else {
                 System.out.println(ruta + " NO EXISTE");
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
-
         }
 
-        String retorno2 = retorno.toString();
-
-        //System.out.println(retorno2);
-        int contador =0;
-        for (int i = 0; i < array.size(); i++) {
-
-            if (array.get(i).equalsIgnoreCase(introducido)){
+        int contador = 0;
+        for (String palabra : array) {
+            if (palabra.equalsIgnoreCase(introducido)) {
                 contador++;
             }
         }
-        System.out.println(introducido+ " aparece : "+ contador+" veces");
-        return retorno2;
+
+        System.out.println("CONTENIDO DE LA ARRAY:");
+        for (String palabra : array) {
+            System.out.println("- " + palabra);
+        }
+        System.out.println(introducido + " aparece: " + contador + " veces");
     }
 }
