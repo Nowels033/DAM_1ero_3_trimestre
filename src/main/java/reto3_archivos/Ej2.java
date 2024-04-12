@@ -26,7 +26,7 @@ public class Ej2 {
         }
         DataOutputStream dos = new DataOutputStream(fos);
         for (int i = 0; i < 3; i++) {
-
+            datos.delete(0,datos.length());
             System.out.println("Introduce el nombre de la persona");
             introducido=sc.nextLine();
             datos.append(introducido);
