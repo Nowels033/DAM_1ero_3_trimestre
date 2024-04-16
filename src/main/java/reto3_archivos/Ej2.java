@@ -6,14 +6,15 @@ import java.util.Scanner;
 
 public class Ej2 {
 
+//    Escribir un programa Java que permita crear secuencialmente un fichero binario que contenga la información de varias personas.
+//    Para cada persona se almacenará: nombre, apellido1, apellido2 y año de nacimiento.
+//    El nombre y los apellidos tendrán 20 caracteres rellenando con espacios al final para completar la longitud. Leer el fichero
     public static void main(String[] args) {
-        try {
+
             ficheroBinario();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
-    public static void ficheroBinario() throws IOException {
+    public static void ficheroBinario()  {
         StringBuilder datos = new StringBuilder(20);
         String introducido;
         int anio;
@@ -29,15 +30,61 @@ public class Ej2 {
             datos.delete(0,datos.length());
             System.out.println("Introduce el nombre de la persona");
             introducido=sc.nextLine();
+
             datos.append(introducido);
-            dos.writeUTF(String.valueOf(datos));
+            for (int j = introducido.length(); j < 20; j++) {
+                    datos.append(" ");
+            }
 
+            try {
+                dos.writeUTF(String.valueOf(datos));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
+            datos.delete(0,datos.length());
+            System.out.println("Introduce el apellido1 de la persona");
+            introducido=sc.nextLine();
+            datos.append(introducido);
+            for (int j = introducido.length(); j < 20; j++) {
+                datos.append(" ");
+            }
+            try {
+                dos.writeUTF(String.valueOf(datos));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
+            datos.delete(0,datos.length());
+            System.out.println("Introduce el apellido2 de la persona");
+            introducido=sc.nextLine();
+            datos.append(introducido);
+            for (int j = introducido.length(); j < 20; j++) {
+                datos.append(" ");
+            }
+            try {
+                dos.writeUTF(String.valueOf(datos));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println("Introduce la feha de nacimiento de la persona");
+            anio=sc.nextInt();
+            sc.nextLine();
+            try {
+                dos.writeInt(anio);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
         }
-        dos.close();
-        fos.close();
+        try {
+            dos.close();
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
         FileInputStream fis = null;
 
@@ -55,7 +102,11 @@ public class Ej2 {
             }
             try {
 
-                System.out.println(dis.readUTF());
+                System.out.print(dis.readUTF());
+                System.out.print(dis.readUTF());
+                System.out.print(dis.readUTF());
+                System.out.println(dis.readInt());
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
