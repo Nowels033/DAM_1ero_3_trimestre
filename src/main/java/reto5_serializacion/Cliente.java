@@ -1,6 +1,8 @@
 package reto5_serializacion;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
     private int codigo;
     private String nombre;
     private String direccion;
