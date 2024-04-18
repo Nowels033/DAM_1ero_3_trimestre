@@ -15,7 +15,7 @@ public class Ejercicio1 {
         int read;
         StringBuilder builder = new StringBuilder();
         String str="";
-        String introducido="juan";
+        String introducido="paco";
         String cambiar="noel";
         FileInputStream fis = null;
 
@@ -40,7 +40,7 @@ public class Ejercicio1 {
 
                 if (caracter == ' ' || caracter == '\n'){
 
-                    if (str.equalsIgnoreCase(introducido+' ')){
+                    if (str.equalsIgnoreCase(introducido+' ')||str.equalsIgnoreCase(introducido)){
 
                         builder.append(cambiar);
                         builder.append(" ");

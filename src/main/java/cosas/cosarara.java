@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class cosarara extends Applet implements Runnable{
     public static final int TIEMPO = 10;
+
     Thread animacion;
     Image imagen;
     Graphics noseve;
@@ -22,8 +23,9 @@ public class cosarara extends Applet implements Runnable{
     int tiempoMayorVelocidad = 0;
     boolean timer = false;
     boolean fin = false;
+    public static void main(String[] args) {
 
-
+    }
     //INIT
     public void init(){
         imagen = this.createImage(300,300);
