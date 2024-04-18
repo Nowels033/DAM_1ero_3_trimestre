@@ -3,7 +3,7 @@ package reto5_serializacion;
 
 import java.io.*;
 
-public class Main {
+public class Ejercicio1 {
 
    /* 1. Escribir un programa Java que trate objetos de la clase Casa. Un objeto casa tiene los siguientes atributos:
 •    dirección
