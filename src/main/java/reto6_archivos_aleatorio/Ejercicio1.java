@@ -13,9 +13,9 @@ public class Ejercicio1 {
     }
     public static void sustituir(String fichero) throws IOException {
         int read;
-        StringBuilder builder = new StringBuilder();
-        String str="";
-        String introducido="paco";
+        StringBuilder pantalla = new StringBuilder();
+        StringBuilder leer=new StringBuilder();
+        String introducido="juan";
         String cambiar="noel";
         FileInputStream fis = null;
 
@@ -36,28 +36,33 @@ public class Ejercicio1 {
                 read=dis.read();
                 char caracter = (char) read;
                 System.out.print(caracter);
-                str+=caracter;
+                leer.append(caracter);
 
-                if (caracter == ' ' || caracter == '\n'){
+                if (caracter == ' ' || caracter == '\r'|| caracter == '\n'){
 
-                    if (str.equalsIgnoreCase(introducido+' ')||str.equalsIgnoreCase(introducido)){
+                    if (leer.toString().equalsIgnoreCase(introducido+" ")||leer.toString().equalsIgnoreCase(introducido)){
 
-                        builder.append(cambiar);
-                        builder.append(" ");
-                        str="";
+                        pantalla.append(cambiar);
+                        pantalla.append(" ");
+                        leer.delete(0,leer.length());
 
                     }
-                    if (str.equalsIgnoreCase(introducido+"\n")){
+                    if (leer.toString().equalsIgnoreCase(introducido+"\r")||leer.toString().equalsIgnoreCase(introducido+"\n")){
 
-                        builder.append(cambiar);
 
-                        str="";
+                        pantalla.append(cambiar);
+
+                        leer.delete(0,leer.length());
 
                     }
                     else {
-                        builder.append(str);
-                        str="";
+                        pantalla.append(leer);
+                        leer.delete(0,leer.length());
                     }
+                }
+                else {
+                    //pantalla.append(leer);
+
                 }
             } catch (IOException e) {
                 //throw new RuntimeException(e);
@@ -70,7 +75,7 @@ public class Ejercicio1 {
             dis.close();
             fis.close();
 
-            System.out.println(builder.toString());
+            System.out.println("\n"+pantalla.toString());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
