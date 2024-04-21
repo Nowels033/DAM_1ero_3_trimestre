@@ -1,0 +1,23 @@
+
+ ________________________             ________________________               ________________________
+|         Instalación     |           |        Reserva         |             |         Socio          |
+|------------------------|           |------------------------|             |------------------------|
+| - nombre: String       |           | - id: int               |             | - id: int              |
+| - precioPorHora: float |<>-------<>| - instalacion: Instalación |         | - nombre: String       |
+| - gasto: float         |           | - socio: Socio         |             | - direccion: String    |
+|                        |           | - fechaInicio: Date    |             | - telefono: String     |
+|                        |           | - fechaFin: Date        |             | - cuota: float         |
+|________________________|           | - articulos: List<Articulo> |         |________________________|
+                                     |------------------------|
+                                     | + agregarArticulo(articulo: Articulo): void |
+                                     | + eliminarArticulo(articulo: Articulo): void |
+                                     | + calcularCostoTotal(): float |
+                                     |________________________|
+
+ ________________________
+|         Articulo       |
+|------------------------|
+| - nombre: String       |
+| - precio: float        |
+|________________________|
+
