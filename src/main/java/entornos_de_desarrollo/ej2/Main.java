@@ -19,6 +19,13 @@ public class Main {
         comunidad.add(gymUno);
         comunidad.add(pistaUno);
 
+        Articulo pelota1 = new Articulo("pelota de futbol",10);
+        Articulo pelota2 = new Articulo("pelota de baloncesto",10);
+        Articulo pelotasTenis = new Articulo("pelotas de tenis lote de 15 Unds",20);
+        Articulo gorro = new Articulo("gorro de baño",5.5);
+        Articulo raqueta = new Articulo("raqueta de tenis",10);
+
+
         for (int i = 0; i < comunidad.size(); i++) {
 
             System.out.println(comunidad.get(i).toString());
