@@ -10,10 +10,11 @@ public class ejemplo1BD {
 
         try {
             //Class.forName("com.mysql.jbdc.driver");
-            Connection miConexion = DriverManager.getConnection("jbdc:mysql://localhost:3307/sakila","root","admin");
+            //Connection miConexion = DriverManager.getConnection("jbdc:mysql://localhost:3307/sakila","root","admin");
+            Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cine", "root", "admin");
             Statement st = miConexion.createStatement();
 
-            ResultSet rs =st.executeQuery("select * from actor");
+            ResultSet rs =st.executeQuery("select * from cuentas");
 
             while (rs.next()){
 
@@ -24,7 +25,8 @@ public class ejemplo1BD {
                         +"\t"+rs.getDouble("precio")
                 +"\t"+ rs.getBoolean("importado")));*/
 
-                System.out.println(rs.getInt("actor_id"));
+                System.out.println(rs.getInt("id")+"\t"+rs.getDouble("saldo"));
+
 
             }
 
