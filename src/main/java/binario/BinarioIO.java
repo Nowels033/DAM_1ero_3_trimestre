@@ -12,7 +12,7 @@ public class BinarioIO {
         double nota;
         Scanner sc = new Scanner(System.in);
         try {
-            FileOutputStream fos = new FileOutputStream( "C:\\dir1\\notas.dat",true);
+            FileOutputStream fos = new FileOutputStream( "C:\\dir1\\notas.dat");
             DataOutputStream dos = new DataOutputStream(fos);
             System.out.println("ingrese un codigo de asignatura(0 para acabar)");
             nM=sc.nextInt();
@@ -39,7 +39,8 @@ public class BinarioIO {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            System.out.println("FIN DE FICHERO");
         }
 
 
