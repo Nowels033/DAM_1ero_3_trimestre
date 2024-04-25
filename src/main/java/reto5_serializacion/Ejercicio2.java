@@ -172,7 +172,10 @@ public class Ejercicio2 {
 
         try {
             ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream("C:\\dir1\\Clientes.bin"));
-            clientes = (List<Cliente>) recuperarFichero.readObject();
+            for (Cliente cliente : clientes = (List<Cliente>) recuperarFichero.readObject()) {
+                
+            }
+
             recuperarFichero.close();
 
             System.out.println("CLIENTES EN EL FICHERO");
@@ -186,31 +189,29 @@ public class Ejercicio2 {
             System.out.println("INTRODUCE EL CODIGO DE CLIENTE PARA MODIFICAR UN CLIENTE");
             int codigo=sc.nextInt();
 
-            for (Cliente e: clientes) {
-
-                if (codigo==e.getCodigo()){
-
-                    System.out.println("SEGURO QUE DESEA MODIFICAR AL CLIENTE :"+e.getNombre());
-                    System.out.println("SI (introducir (S)) O NO (introducir (N))");
-                    char siONo=sc.nextLine().toLowerCase().charAt(0);
-                    if (siONo=='s'){
-
-                        System.out.println("INTRODUCE UN NUEVO NOMBRE DE CLIENTE");
-                        String nombre = sc.nextLine();
-                        e.setNombre(nombre);
-                        System.out.println("INTRODUCE UNA NUEVA DIRECCION DE CLIENTE");
-                        String direccion = sc.nextLine();
-                        e.setNombre(direccion);
-
-                        System.out.println("SE MODIFICO AL CLIENTE : "+e);
-
+            if (clientes.isEmpty()) {
+                System.out.println("No hay clientes para modificar.");
+            } else {
+                // Si la lista no está vacía, procede con el bucle
+                for (int i = 0; i < clientes.size(); i++) {
+                    if (codigo == clientes.get(i).getCodigo()) {
+                        System.out.println("SEGURO QUE DESEA MODIFICAR AL CLIENTE :" + clientes.get(i).getNombre());
+                        System.out.println("SI (introducir (S)) O NO (introducir (N))");
+                        sc.nextLine();
+                        String siONo = String.valueOf(sc.nextLine().charAt(0));
+                        if (siONo.equalsIgnoreCase("s")) {
+                            System.out.println("INTRODUCE UN NUEVO NOMBRE DE CLIENTE");
+                            String nombre = sc.nextLine();
+                            clientes.get(i).setNombre(nombre);
+                            System.out.println("INTRODUCE UNA NUEVA DIRECCION DE CLIENTE");
+                            String direccion = sc.nextLine();
+                            clientes.get(i).setDireccion(direccion); // Corregido: setDireccion en lugar de setNombre
+                            System.out.println("SE MODIFICO AL CLIENTE : " + clientes.get(i));
+                        } else {
+                            System.out.println("NO SE LLEGO A MODIFICAR AL CLIENTE : " + clientes.get(i).getNombre());
+                        }
                     }
-                    else{
-                        System.out.println("NO SE LLEGO A MODIFICAR AL CLIENTE : "+e.getNombre());
-                    }
-
                 }
-
             }
 
             try {
@@ -260,6 +261,7 @@ public class Ejercicio2 {
                     break;
                 case 4:
                     System.out.println("4-Modificar un cliente (según el número de cliente, crear otro archivo auxiliar para hacer la modificación");
+                    modificarCliente();
                     break;
                 case 5:
                     System.out.println("5-Borrar un cliente");
