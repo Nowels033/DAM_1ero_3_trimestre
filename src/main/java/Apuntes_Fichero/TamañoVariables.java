@@ -32,6 +32,7 @@ public class TamañoVariables {
             raf.writeChar(caracter);
             raf.writeBoolean(booleano);
             System.out.println("Se ha escrito la información en el archivo correctamente.");
+            raf.close();
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }

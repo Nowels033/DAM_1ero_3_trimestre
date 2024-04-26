@@ -23,15 +23,21 @@ public class Ejercicio3 {
             RandomAccessFile fich = new RandomAccessFile(fichero,"rw");
             int referencia;
             double precio;
+          /*  String elquebuscar;
+            String buscado = "casa";*/
 
             do {
                 referencia= fich.readInt();
                 precio=fich.readDouble();
+               /* elquebuscar=fich.readUTF();*/
 
                 if (precio>100){
 
                     precio=precio*0.5;
                 }
+               /* if (buscado.equalsIgnoreCase(elquebuscar)){
+                    fich.seek(fich.getFilePointer()-(buscado.length()*2));
+                }*/
                 else {
                     precio=precio*1.5;
                 }
