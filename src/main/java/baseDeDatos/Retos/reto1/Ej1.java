@@ -20,8 +20,7 @@ public class Ej1 {
         final String instSQLInsert="INSERT into productos values (4,'pistola',500.99,true)";
         final String instSQLDelete="delete from productos where codigo=4";
         final String instSQLUpdate="update productos set precio = precio * 2 where codigo=2";
-        final String instSQLTable="Create table personasPaises (id int primary key,nombre varchar(30),apellido varchar(40),edad int, " +
-                "nombrePais varchar(40),tamaño int)";
+        final String instSQLTable="Create table personasPaises (id int primary key,nombre varchar(30),apellido varchar(40),edad int, nombrePais varchar(40),tamaño int)";
         try {
             //Class.forName("com.mysql.jbdc.driver");
 
@@ -30,7 +29,7 @@ public class Ej1 {
             //st.executeUpdate(instSQLInsert);
             //st.executeUpdate(instSQLDelete);
             //st.execute(instSQLUpdate);
-
+            st.execute(instSQLTable);
 
 
             ResultSet rs =st.executeQuery(instSQLSelect);
