@@ -16,12 +16,10 @@ import java.sql.*;
 public class Ej1 {
 
     public static void main(String[] args) {
-        final String instSQLSelect="select * from personasPaises";
+        final String instSQLSelect="select * from productos";
         final String instSQLInsert="INSERT into productos values (4,'pistola',500.99,true)";
         final String instSQLDelete="delete from productos where codigo=4";
         final String instSQLUpdate="update productos set precio = precio * 2 where codigo=2";
-
-        // crear tabla de personasPaises
         final String instSQLTable="Create table personasPaises (id int primary key,nombre varchar(30),apellido varchar(40),edad int, " +
                 "nombrePais varchar(40),tamaño int)";
         try {
@@ -33,9 +31,6 @@ public class Ej1 {
             //st.executeUpdate(instSQLDelete);
             //st.execute(instSQLUpdate);
 
-            // para crear la tabla st.execute(instSQLTable);
-
-            st.execute(instSQLInsert);
 
 
             ResultSet rs =st.executeQuery(instSQLSelect);
