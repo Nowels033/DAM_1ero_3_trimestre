@@ -25,53 +25,88 @@ public class Ej3 {
 
     public static void main(String[] args) {
 
-        String instSQLInsert = "INSERT into productos values (4,'pistola',500.99,true)";
-        final String instSQLDelete = "delete from productos where codigo=4";
-        final String instSQLUpdate = "update personaspaises set edad = edad + 1 where nombrepais ='costa rica'";
-        final String instSQLTable = "Create table segurocoche (dni varchar(10),edad int, matricula varchar(10),seguro double)";
+
+        final String instSQLTable = "Create table segurocoche (id int auto_increment primary key,dni varchar(10),edad int, matricula varchar(10),seguro double)";
         try {
-            //Class.forName("com.mysql.jbdc.driver");
+
 
             Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/datoscoches", "root", "admin");
             Statement st = miConexion.createStatement();
-            //st.executeUpdate(instSQLInsert);
-            //st.executeUpdate(instSQLDelete);
-            //st.execute(instSQLUpdate);
-            // String insertarDatosSQL = "INSERT INTO segurocoche (dni,edad,matricula,seguro) " +
-            //    "SELECT dni,matricula " +
-            //   "FROM  propietarios JOIN coches  ON propietarios.dni = coches.dni";
 
 
-        // st.executeUpdate(instSQLTable);
 
-            // st.execute(insertarDatosSQL);
-            final String instSQLSelect = "select propietarios.dni,edad,matricula,precio from propietarios join coches on propietarios.dni = coches.dni;";
+            st.executeUpdate(instSQLTable);
 
+
+            String instSQLSelect = "select propietarios.dni,edad,matricula,precio from propietarios join coches on propietarios.dni = coches.dni;";
+            Statement st2 = miConexion.createStatement();
             ResultSet rs = st.executeQuery(instSQLSelect);
 
             while (rs.next()) {
 
-            String dni_propietario = rs.getString("dni");
-            int edad = rs.getInt("edad");
-            String matricula = rs.getString("matricula");
-            int precio=rs.getInt("precio");
-            double seguro= calcularSeguro(edad,precio);
+                String dni_propietario = rs.getString("dni");
+                int edad = rs.getInt("edad");
+                String matricula = rs.getString("matricula");
+                int precio = rs.getInt("precio");
+                double seguro = calcularSeguro(edad, precio);
 
-            String insertTablaSeguroCoche="insert into segurocoche (dni,edad,matricula,seguro) values ('"+dni_propietario+"',"+edad+",'"+matricula+"',"+seguro+");";
-            st.executeUpdate(insertTablaSeguroCoche);
+                String insertTablaSeguroCoche = "insert into segurocoche (dni,edad,matricula,seguro) values ('" + dni_propietario + "'," + edad + ",'" + matricula + "'," + seguro + ");";
+
+                st2.executeUpdate(insertTablaSeguroCoche);
 
             }
 
-            rs.close();
-            miConexion.close();
+            String instSQLSelect2 = "select  * from segurocoche";
+
+            rs = st.executeQuery(instSQLSelect2);
+            double porcetaje;
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String dni_propietario = rs.getString("dni");
+                int edad = rs.getInt("edad");
+                String matricula = rs.getString("matricula");
+                double seguro = rs.getDouble("seguro");
+                if (seguro < 100) {
+                    porcetaje = seguro * 5 / 100;
+                    seguro = porcetaje + seguro;
+
+                    String updateTablaSeguroCoche = "update segurocoche set seguro=" + seguro + "where matricula ='" + matricula + "'";
+
+                    st2.executeUpdate(updateTablaSeguroCoche);
+                }
+                if (seguro > 400) {
+
+
+                    String deleteTablaSeguroCoche = "delete from segurocoche where matricula ='" + matricula + "'";
+
+                    st2.executeUpdate(deleteTablaSeguroCoche);
+                }
+
+            }
+
+            rs = st.executeQuery(instSQLSelect2);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String dni_propietario = rs.getString("dni");
+                int edad = rs.getInt("edad");
+                String matricula = rs.getString("matricula");
+                double seguro = rs.getDouble("seguro");
+                System.out.println("DNI : " + dni_propietario + " EDAD : " + edad + " MATRICULA : " + matricula + " SEGURO : " + seguro);
+
+            }
+
+
+         /*   rs.close();
+            miConexion.close();*/
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
 
         }
     }
+
     private static double calcularSeguro(int edad, double precioCoche) {
         if (edad < 40) {
             return precioCoche * 0.02; // 2% del precio del coche
