@@ -24,7 +24,7 @@ import java.sql.*;
 public class Ej3 {
 
     public static void main(String[] args) {
-        final String instSQLSelect = "select * from personasPaises";
+
         String instSQLInsert = "INSERT into productos values (4,'pistola',500.99,true)";
         final String instSQLDelete = "delete from productos where codigo=4";
         final String instSQLUpdate = "update personaspaises set edad = edad + 1 where nombrepais ='costa rica'";
@@ -41,20 +41,35 @@ public class Ej3 {
             //    "SELECT dni,matricula " +
             //   "FROM  propietarios JOIN coches  ON propietarios.dni = coches.dni";
 
-           st.execute(instSQLTable);
+
+        // st.executeUpdate(instSQLTable);
 
             // st.execute(insertarDatosSQL);
-
+            final String instSQLSelect = "select propietarios.dni,edad,matricula,precio from propietarios join coches on propietarios.dni = coches.dni;";
 
             ResultSet rs = st.executeQuery(instSQLSelect);
 
             while (rs.next()) {
 
+            String dni_propietario = rs.getString("dni");
+            int edad = rs.getInt("edad");
+            String matricula = rs.getString("matricula");
+            int precio=rs.getInt("precio");
+            double seguro= calcularSeguro(edad,precio);
+
+            String insertTablaSeguroCoche="insert into segurocoche (dni,edad,matricula,seguro) values ('"+dni_propietario+"',"+edad+",'"+matricula+"',"+seguro+");";
+            st.executeUpdate(insertTablaSeguroCoche);
 
             }
 
+            rs.close();
+            miConexion.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        finally {
+
         }
     }
     private static double calcularSeguro(int edad, double precioCoche) {
