@@ -1,50 +1,48 @@
 package entornos_de_desarrollo.ej1;
 
-public class Cliente {
+import java.util.List;
 
-    private  int numero_cliente;
-    private String nombre;
-    private String telefono;
+public class Cliente extends Usuario{
 
-    public Cliente(int numero_cliente, String nombre, String telefono) {
-        this.numero_cliente = numero_cliente;
-        this.nombre = nombre;
-        this.telefono = telefono;
-    }
-    public Cliente() {
+    private List<Reserva> reservas;
 
+    public Cliente(String nombre, String apellido, String correo, String contraseña) {
+        super(nombre, apellido, correo, contraseña);
     }
 
-    public int getNumero_cliente() {
-        return numero_cliente;
+
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
-    public void setNumero_cliente(int numero_cliente) {
-        this.numero_cliente = numero_cliente;
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+    public void añadirReserva(Reserva reserva){
+
+        reservas.add(reserva);
+
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public void verReservas(){
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+        if (!this.reservas.isEmpty()) {
+            for (int i = 0; i < this.reservas.size(); i++) {
 
-    public String getTelefono() {
-        return telefono;
-    }
+                System.out.println("Reserva " + (i + 1) + reservas.get(i).toString());
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
+            }
+        }
+        else {
+            System.out.println("no tienes reservas realizadas");
+        }
 
+    }
     @Override
     public String toString() {
         return "Cliente{" +
-                "numero_cliente=" + getNumero_cliente() +
                 ", nombre='" + getNombre() + '\'' +
-                ", telefono='" + getTelefono() + '\'' +
-                '}';
+                ", apellido='" + getApellido() + '\'' +
+                ", correo='" + getCorreo() + '\'' + '}';
     }
 }

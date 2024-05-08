@@ -55,7 +55,6 @@ public class Ej3 {
                 st2.executeUpdate(insertTablaSeguroCoche);
 
             }
-
             String instSQLSelect2 = "select  * from segurocoche";
 
             rs = st.executeQuery(instSQLSelect2);
@@ -92,13 +91,14 @@ public class Ej3 {
                 int edad = rs.getInt("edad");
                 String matricula = rs.getString("matricula");
                 double seguro = rs.getDouble("seguro");
-                System.out.println("DNI : " + dni_propietario + " EDAD : " + edad + " MATRICULA : " + matricula + " SEGURO : " + seguro);
-
+                System.out.println("DNI : " + dni_propietario + ", EDAD : " + edad + ", MATRICULA : " + matricula + ", SEGURO : " + seguro);
             }
 
+            rs.close();
+           st2.close();
+            st.close();
+            miConexion.close();
 
-         /*   rs.close();
-            miConexion.close();*/
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -109,9 +109,9 @@ public class Ej3 {
 
     private static double calcularSeguro(int edad, double precioCoche) {
         if (edad < 40) {
-            return precioCoche * 0.02; // 2% del precio del coche
+            return precioCoche * 0.02;
         } else {
-            return precioCoche * 0.01; // 1% del precio del coche
+            return precioCoche * 0.01;
         }
     }
 
