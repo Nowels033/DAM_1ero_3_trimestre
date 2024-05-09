@@ -6,22 +6,22 @@ public abstract class Usuario {
     private String nombre;
     private String apellido;
     private String correo;
-    private String contraseña;
+    private String contrasenia_user;
 
-    public Usuario(String nombre, String apellido, String correo, String contraseña) {
+    public Usuario(String nombre, String apellido, String correo, String contrasenia_user) {
 
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasenia_user = contrasenia_user;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia_user() {
+        return contrasenia_user;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia_user(String contrasenia_user) {
+        this.contrasenia_user = contrasenia_user;
     }
 
     public String getNombre() {
