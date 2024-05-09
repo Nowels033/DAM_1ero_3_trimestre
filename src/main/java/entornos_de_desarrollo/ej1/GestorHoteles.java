@@ -62,6 +62,7 @@ public class GestorHoteles {
 
                                     switch (opcion) {
                                         case 1:
+                                            hacerReserva((Cliente) usuarios.get(i));
 
                                             break;
                                         case 2:
@@ -172,6 +173,11 @@ public class GestorHoteles {
 
 
         }while(opcion != 0);
+
+    }
+    public static void hacerReserva(Cliente cliente){
+
+
 
     }
 }
