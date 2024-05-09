@@ -19,6 +19,11 @@ public class GestorHoteles {
             switch (opcion) {
                 case 1:
                     System.out.println("--INICIAR SESION---------------------------");
+                    System.out.println("Introduce tu correo electronico");
+                    String correoE = sc.nextLine();
+                    System.out.println("Introduce tu contraseña");
+                    String inicioSesion = sc.nextLine();
+                    
 
 
                     break;
@@ -45,7 +50,7 @@ public class GestorHoteles {
                             do {
 
 
-                            System.out.println("Introduce tu nueva contraseña");
+                            System.out.println("Introduce tu contraseña");
                             contrasenia = sc.nextLine();
                             System.out.println("Vuelve a introducir la contraseña");
                             verifyContrasenia = sc.nextLine();
@@ -77,7 +82,7 @@ public class GestorHoteles {
                         do {
 
 
-                            System.out.println("Introduce tu nueva contraseña");
+                            System.out.println("Introduce tu contraseña");
                             contrasenia = sc.nextLine();
                             System.out.println("Vuelve a introducir la contraseña");
                             verifyContrasenia = sc.nextLine();
