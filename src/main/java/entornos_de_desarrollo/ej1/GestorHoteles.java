@@ -1,5 +1,6 @@
 package entornos_de_desarrollo.ej1;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,8 +28,37 @@ public class GestorHoteles {
     }
     public static void gestorHoteles(){
         List<Usuario> usuarios = new ArrayList<>();
-        Cliente prueba = new Cliente("prueba","apelldio","correo","123");
-        usuarios.add(prueba);
+        List<Habitacion> habitaciones = new ArrayList<>();
+        List<Reserva> reservas = new ArrayList<>();
+        List<Hotel> hoteles = new ArrayList<>();
+
+        habitaciones.add(new Habitacion(1, true, 1));
+        habitaciones.add(new Habitacion(2, true, 2));
+        habitaciones.add(new Habitacion(3, true, 4));
+        habitaciones.add(new Habitacion(4, true, 6));
+        habitaciones.add(new Habitacion(5, true, 1));
+        habitaciones.add(new Habitacion(6, true, 2));
+        habitaciones.add(new Habitacion(7, true, 1));
+        habitaciones.add(new Habitacion(8, true, 2));
+        habitaciones.add(new Habitacion(9, true, 1));
+        habitaciones.add(new Habitacion(10, true, 2));
+
+        Hotel hotel1 = new Hotel(1, "HOTEL 1", "Calle 1", "123456789",habitaciones);
+        Hotel hotel2 = new Hotel(2, "HOTEL 2", "Calle 2", "123456789",habitaciones);
+        Hotel hotel3 = new Hotel(3, "HOTEL 3", "Calle 3", "123456789",habitaciones);
+        hoteles.add(hotel1);
+        hoteles.add(hotel2);
+        hoteles.add(hotel3);
+
+
+
+
+        usuarios.add(new Administrador("admin","admin","admin@hotel.com","admin"));
+        usuarios.add(new Cliente("prueba","apelldio","correo@ejemplo.com","123"));
+
+
+
+
         Scanner sc = new Scanner(System.in);
         int opcion;
         final int codigoAdmin=123456;
@@ -106,8 +136,48 @@ public class GestorHoteles {
 
                                     switch (opcion) {
                                         case 1:
-                                            ((Cliente) usuarios.get(i)).realizarReserva();
+                                           // ((Cliente) usuarios.get(i)).realizarReserva();
+                                            System.out.println("Ingrese la fecha de entrada (YYYY-MM-DD):");
+                                            sc.nextLine();
+                                            String entradaStr = sc.nextLine();
+                                            LocalDate fechaEntrada = LocalDate.parse(entradaStr);
 
+                                            System.out.println("Ingrese la fecha de salida (YYYY-MM-DD):");
+                                            String salidaStr = sc.nextLine();
+                                            LocalDate fechaSalida = LocalDate.parse(salidaStr);
+
+                                            System.out.println("Ingrese el número de personas:");
+                                            int numeroPersonas = sc.nextInt();
+                                            sc.nextLine();
+
+                                            System.out.println("Los hoteles disponibles son: ");
+                                            for (int j = 0; j < hoteles.size(); j++) {
+                                                System.out.println(hoteles.get(j).toString());
+                                            }
+
+                                            System.out.println("Elija un hotel:");
+                                            int hotelElegido = sc.nextInt();
+                                            sc.nextLine();
+
+                                            Hotel hotel = hoteles.get(hotelElegido - 1);
+
+                                            System.out.println("Las habitaciones disponibles son: ");
+                                            for (int j = 0; j < habitaciones.size(); j++) {
+                                                System.out.println(habitaciones.get(j).toString());
+                                            }
+
+                                            System.out.println("Elija una habitación:");
+                                            int habitacionElegida = sc.nextInt();
+                                            sc.nextLine();
+
+                                            Habitacion habitacion = habitaciones.get(habitacionElegida - 1);
+
+                                            System.out.println("Habitación elegida: " + habitacion.toString());
+
+                                            Reserva reserva = new Reserva(fechaEntrada, fechaSalida, habitacion, hotel, numeroPersonas);
+
+                                            ((Cliente) usuarios.get(i)).realizarReserva(reserva);
+                                            System.out.println("Reserva realizada");
 
                                             break;
                                         case 2:

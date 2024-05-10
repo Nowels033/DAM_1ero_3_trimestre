@@ -1,17 +1,24 @@
 package entornos_de_desarrollo.ej1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hotel {
     private int codigo_hotel;
     private String nombre;
     private String direccion;
     private String telefono;
 
-    public Hotel(int codigo_hotel, String nombre, String direccion, String telefono) {
+    private List <Habitacion> habitaciones = new ArrayList<Habitacion>();
+
+    public Hotel(int codigo_hotel, String nombre, String direccion, String telefono, List<Habitacion> habitaciones) {
         this.codigo_hotel = codigo_hotel;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.habitaciones = habitaciones;
     }
+
     public Hotel() {
 
     }

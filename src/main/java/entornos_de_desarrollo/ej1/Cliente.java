@@ -81,9 +81,9 @@ public class Cliente extends Usuario {
         this.reservas.remove(reserva);
     }
 
-    public void realizarReserva() {
+    public void realizarReserva(Reserva reserva) {
 
-        Reserva reserva = new Reserva();
+        //Reserva reserva = new Reserva();
 
         this.aniadirReserva(reserva);
 
