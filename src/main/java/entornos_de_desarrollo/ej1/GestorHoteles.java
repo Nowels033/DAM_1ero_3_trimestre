@@ -106,7 +106,8 @@ public class GestorHoteles {
 
                                     switch (opcion) {
                                         case 1:
-                                            //hacerReserva((Cliente) usuarios.get(i));
+                                            ((Cliente) usuarios.get(i)).realizarReserva();
+
 
                                             break;
                                         case 2:
