@@ -46,10 +46,13 @@ public class EJ4 {
 
             // st.execute(consulta);
 
-            st.executeUpdate("use bdnueva");
+            st.executeUpdate("use personal");
+
 
 
             st.executeUpdate("create table if not exists tablonueva (id int auto_increment primary key,nombre varchar(64))");
+            st.executeUpdate("insert into tablonueva (nombre) values ('hola')");
+
 
 
         } catch (SQLException e) {

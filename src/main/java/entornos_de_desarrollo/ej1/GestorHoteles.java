@@ -27,6 +27,8 @@ public class GestorHoteles {
     }
     public static void gestorHoteles(){
         List<Usuario> usuarios = new ArrayList<>();
+        Cliente prueba = new Cliente("prueba","apelldio","correo","123");
+        usuarios.add(prueba);
         Scanner sc = new Scanner(System.in);
         int opcion;
         final int codigoAdmin=123456;
@@ -48,7 +50,49 @@ public class GestorHoteles {
                             if (usuarios.get(i) instanceof Administrador){
                                 // Administrador admin=(Administrador) usuarios.get(i);
                                 System.out.println("Has iniciado sesion como administrador " + usuarios.get(i).getNombre());
+                                do {
 
+                                    System.out.println("Has iniciado sesion " + usuarios.get(i).getNombre());
+                                    System.out.println("Elija una opción:");
+                                    System.out.println("1. Ver reservas sin factura");
+                                    System.out.println("2. Ver reservas del dia de hoy sin factura");
+                                    System.out.println("0. Salir");
+
+                                    opcion = sc.nextInt();
+
+                                    switch (opcion) {
+                                        case 1:
+                                            System.out.println("LAS RESERVAS SON : ");
+                                            for (int j = 0; j < usuarios.size(); j++) {
+
+                                                if (usuarios.get(j) instanceof Cliente) {
+
+                                                    ((Cliente) usuarios.get(j)).verReservasAdmin();
+
+                                                }
+                                            }
+
+                                            break;
+                                        case 2:
+                                            System.out.println("LAS RESERVAS DE HOY  SON : ");
+                                            for (int j = 0; j < usuarios.size(); j++) {
+
+                                                if (usuarios.get(j) instanceof Cliente) {
+
+                                                    ((Cliente) usuarios.get(j)).verReservasAdminDelDia();
+
+                                                }
+                                            }
+
+                                            break;
+                                        case 0:
+                                            System.out.println("¡Adiós!");
+                                            break;
+                                        default:
+                                            System.out.println("Opción no válida");
+                                    }
+
+                                }while (opcion != 0);
                             }else if (usuarios.get(i) instanceof Cliente){
                                 do {
 
@@ -56,13 +100,13 @@ public class GestorHoteles {
                                     System.out.println("Elija una opción:");
                                     System.out.println("1. Hacer reserva");
                                     System.out.println("2. Ver reservas");
-                                    System.out.println("3. salir");
+                                    System.out.println("0. Salir");
 
                                     opcion = sc.nextInt();
 
                                     switch (opcion) {
                                         case 1:
-                                            hacerReserva((Cliente) usuarios.get(i));
+                                            //hacerReserva((Cliente) usuarios.get(i));
 
                                             break;
                                         case 2:
@@ -86,10 +130,6 @@ public class GestorHoteles {
                         }
 
                     }
-
-
-
-
                     break;
                 case 2:
                     System.out.println("--REGISTRARSE EN EL GESTOR DE HOTELES------");
@@ -159,9 +199,9 @@ public class GestorHoteles {
                         System.out.println("CLIENTE CREADO CORRECTAMENTE");
 
                     }
-                    else {
+                   /* else {
                         System.out.println("OPCION INCORRECTA");
-                    }
+                    }*/
                     break;
                 case 0:
                     System.out.println("¡ADIOS!");
@@ -175,9 +215,5 @@ public class GestorHoteles {
         }while(opcion != 0);
 
     }
-    public static void hacerReserva(Cliente cliente){
 
-
-
-    }
 }
