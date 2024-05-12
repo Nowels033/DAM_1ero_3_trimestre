@@ -20,6 +20,19 @@ public class Alumno extends Persona{
     public void setNotas(List<Notas> notas) {
         this.notas = notas;
     }
+    public void verNotas(){
+
+        if (!this.notas.isEmpty()) {
+            for (int i = 0; i < notas.size(); i++) {
+
+                System.out.println(notas.get(i).toString());
+
+            }
+        }
+        if (this.notas.isEmpty()) {
+            System.out.println("NO TIENES NOTAS REGISTRADAS");
+        }
+    }
 
 
 

@@ -7,9 +7,7 @@ import java.util.Scanner;
 public class GestorDeNotas {
 
 
-
     public static void main(String[] args) {
-
 
 
         Asignatura asignatura1 = new Asignatura("Matematicas", "Primero");
@@ -22,13 +20,13 @@ public class GestorDeNotas {
         asignatura.add(asignatura2);
         asignatura.add(asignatura3);
 
-        Profesor profesor1 = new Profesor("Pepe", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789,"123");
-        Profesor profesor2 = new Profesor("Juan", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789,"123");
+        Profesor profesor1 = new Profesor("Pepe", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
+        Profesor profesor2 = new Profesor("Juan", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
 
-        Alumno alumno1 = new Alumno("Pablo", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789,"123");
-        Alumno alumno2 = new Alumno("Brayan", "Ochoa", "Calle falsa 123", "JQ3ZV@example.com", 123456789,"123");
+        Alumno alumno1 = new Alumno("Pablo", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
+        Alumno alumno2 = new Alumno("Brayan", "Ochoa", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
 
-        List <Persona> ccc = new ArrayList<Persona>();
+        List<Persona> ccc = new ArrayList<Persona>();
 
         ccc.add(profesor1);
         ccc.add(profesor2);
@@ -38,34 +36,34 @@ public class GestorDeNotas {
         Scanner sc = new Scanner(System.in);
         int op;
 
-       do {
-           System.out.println("MENU GESTION DE NOTAS");
-           System.out.println("1. INICIAR SESION");
-           System.out.println("2. RESGISTRARSE");
-           System.out.println("0. SALIR");
-           System.out.println("INGRESA UNA OPCION");
+        do {
+            System.out.println("MENU GESTION DE NOTAS");
+            System.out.println("1. INICIAR SESION");
+            System.out.println("2. RESGISTRARSE");
+            System.out.println("0. SALIR");
+            System.out.println("INGRESA UNA OPCION");
             op = sc.nextInt();
 
-           switch (op) {
-               case 1:
-                   inicioSesion(ccc);
-                   break;
-               case 2:
-                   registro(ccc);
-                   break;
-               case 0:
-                   System.out.println("GRACIAS POR UTILIZAR EL GESTOR DE NOTAS");
-                   break;
-               default:
-                   System.out.println("OPCION INCORRECTA");
-           }
+            switch (op) {
+                case 1:
+                    inicioSesion(ccc);
+                    break;
+                case 2:
+                    registro(ccc);
+                    break;
+                case 0:
+                    System.out.println("GRACIAS POR UTILIZAR EL GESTOR DE NOTAS");
+                    break;
+                default:
+                    System.out.println("OPCION INCORRECTA");
+            }
 
-       } while (op != 0);
-
+        } while (op != 0);
 
 
     }
-    public static void registro(List<Persona> ccc){
+
+    public static void registro(List<Persona> ccc) {
         final int codigoProfesor = 1;
         final int codigoAlumno = 2;
 
@@ -75,7 +73,7 @@ public class GestorDeNotas {
         int op;
         op = sc.nextInt();
 
-        if (op == codigoAlumno){
+        if (op == codigoAlumno) {
             System.out.println("REGISTRO DE ALUMNO");
             System.out.println("INTRODUCE TU NOMBRE");
             sc.nextLine();
@@ -97,18 +95,18 @@ public class GestorDeNotas {
                 System.out.println("VUELVE A INTRODUCIR TU CONTRASEÑA");
                 contraseniaVerificar = sc.nextLine();
 
-                if (!contrasenia.equals(contraseniaVerificar)){
+                if (!contrasenia.equals(contraseniaVerificar)) {
                     System.out.println("LAS CONTRASEÑAS NO COINCIDEN");
                 }
             } while (!contrasenia.equals(contraseniaVerificar));
 
-            if (contrasenia.equals(contraseniaVerificar)){
+            if (contrasenia.equals(contraseniaVerificar)) {
                 System.out.println("CONTRASENIA CORRECTA");
             }
 
-            Alumno alumno1 = new Alumno(nombre, apellidos, direccion, correo, telefono,contrasenia);
+            Alumno alumno1 = new Alumno(nombre, apellidos, direccion, correo, telefono, contrasenia);
             ccc.add(alumno1);
-        }else if (op == codigoProfesor){
+        } else if (op == codigoProfesor) {
             System.out.println("REGISTRO DE PROFESOR");
             System.out.println("INTRODUCE TU NOMBRE");
             sc.nextLine();
@@ -126,26 +124,27 @@ public class GestorDeNotas {
             String contraseniaVerificar;
             do {
                 System.out.println("INTRODUCE TU CONTRASEÑA");
-                 contrasenia = sc.nextLine();
+                contrasenia = sc.nextLine();
                 System.out.println("VUELVE A INTRODUCIR TU CONTRASEÑA");
                 contraseniaVerificar = sc.nextLine();
 
-                if (!contrasenia.equals(contraseniaVerificar)){
+                if (!contrasenia.equals(contraseniaVerificar)) {
                     System.out.println("LAS CONTRASEÑAS NO COINCIDEN");
                 }
             } while (!contrasenia.equals(contraseniaVerificar));
 
-            if (contrasenia.equals(contraseniaVerificar)){
+            if (contrasenia.equals(contraseniaVerificar)) {
                 System.out.println("CONTRASENIA CORRECTA");
             }
 
-            Profesor profesor1 = new Profesor(nombre, apellidos, direccion, correo, telefono,contrasenia);
+            Profesor profesor1 = new Profesor(nombre, apellidos, direccion, correo, telefono, contrasenia);
             ccc.add(profesor1);
         }
 
 
     }
-    public static void inicioSesion(List<Persona> ccc){
+
+    public static void inicioSesion(List<Persona> ccc) {
         System.out.println("INICIAR SESION");
         System.out.println("INTRODUCE TU CORREO");
         Scanner sc = new Scanner(System.in);
@@ -153,22 +152,103 @@ public class GestorDeNotas {
         System.out.println("INTRODUCE TU CONTRASEÑA");
         String contrasenia = sc.nextLine();
 
-        for (int i = 0; i < ccc.size(); i++){
-            if (ccc.get(i).getCorreo().equals(correo) && ccc.get(i).getContrasenia().equals(contrasenia)){
+        for (int i = 0; i < ccc.size(); i++) {
+            if (ccc.get(i).getCorreo().equals(correo) && ccc.get(i).getContrasenia().equals(contrasenia)) {
                 System.out.println("BIENVENIDO");
+                System.out.println();
 
-                if (ccc.get(i) instanceof Alumno){
+                if (ccc.get(i) instanceof Alumno) {
                     Alumno alumno = (Alumno) ccc.get(i);
-
+                    System.out.println("QUIERES VER SUS NOTAS?");
+                    System.out.println("1. SI");
+                    System.out.println("2. NO");
+                    int op;
+                    op = sc.nextInt();
+                    sc.nextLine();
+                    if (op == 1) {
+                        alumno.verNotas();
+                    }
+                    if (op == 2) {
+                        System.out.println("HASTA LUEGO");
+                    }
                 }
 
-                if (ccc.get(i) instanceof Profesor){
+                if (ccc.get(i) instanceof Profesor) {
                     Profesor profesor = (Profesor) ccc.get(i);
+                    System.out.println("1. Ingresar Nota");
+                    System.out.println("2. Ver Notas");
+                    System.out.println("3. Ver Alumnos");
+                    System.out.println("4. Ver Profesores");
+                    System.out.println("0. Salir");
+                    int op;
+                    op = sc.nextInt();
+                    sc.nextLine();
+                    if (op == 1) {
+
+                        System.out.println("selecciona el alumno");
+                        for (int j = 0; j < ccc.size(); j++) {
+
+                            if (ccc.get(j) instanceof Alumno) {
+                                System.out.println((j + 1) + ". " + ccc.get(j).getNombre() + " " + ccc.get(j).getApellidos());
+                            }
+
+
+
+                        }
+
+                    }
+
+                    if (op == 2) {
+
+                        System.out.println("NOTAS DE LOS ALUMNOS :");
+                        for (int j = 0; j < ccc.size(); j++) {
+
+                            if (ccc.get(j) instanceof Alumno) {
+                                System.out.println((j + 1) + ". " + ccc.get(j).getNombre() + " " + ccc.get(j).getApellidos());
+                                ((Alumno) ccc.get(j)).verNotas();
+                            }
+                        }
+
+                    }
+
+                    if (op == 3) {
+                        System.out.println("ALUMNOS :");
+                        for (int j = 0; j < ccc.size(); j++) {
+
+                            if (ccc.get(j) instanceof Alumno) {
+                                System.out.println((j + 1) + ". " + ccc.get(j).getNombre() + " " + ccc.get(j).getApellidos());
+                            }
+
+                        }
+
+                    }
+
+                    if (op == 4) {
+                        System.out.println("PROFESORES :");
+                        for (int j = 0; j < ccc.size(); j++) {
+                            if (ccc.get(j) instanceof Profesor) {
+                                System.out.println((j + 1) + ". " + ccc.get(j).getNombre() + " " + ccc.get(j).getApellidos());
+                            }
+
+
+                        }
+
+                    }
+
+                    if (op == 0) {
+                        System.out.println("HASTA LUEGO :");
 
                 }
+                    else {
+
+                        System.out.println("OPCION INCORRECTA");
+                    }
             }
         }
+        }
     }
-
-
 }
+
+
+
+
