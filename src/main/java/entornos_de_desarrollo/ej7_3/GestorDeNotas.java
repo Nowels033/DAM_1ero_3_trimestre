@@ -193,7 +193,6 @@ public class GestorDeNotas {
                             }
 
 
-
                         }
 
                     }
@@ -238,13 +237,12 @@ public class GestorDeNotas {
                     if (op == 0) {
                         System.out.println("HASTA LUEGO :");
 
-                }
-                    else {
+                    } else {
 
                         System.out.println("OPCION INCORRECTA");
                     }
+                }
             }
-        }
         }
     }
 }
