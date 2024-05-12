@@ -20,11 +20,11 @@ public class GestorDeNotas {
         asignatura.add(asignatura2);
         asignatura.add(asignatura3);
 
-        Profesor profesor1 = new Profesor("Pepe", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
-        Profesor profesor2 = new Profesor("Juan", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
+        Profesor profesor1 = new Profesor("Pepe", "Perez", "Calle falsa 123", "pepeV@ccc.com", 123456789, "123");
+        Profesor profesor2 = new Profesor("Juan", "Perez", "Calle falsa 123", "juan@ccc.com", 123456789, "123");
 
-        Alumno alumno1 = new Alumno("Pablo", "Perez", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
-        Alumno alumno2 = new Alumno("Brayan", "Ochoa", "Calle falsa 123", "JQ3ZV@example.com", 123456789, "123");
+        Alumno alumno1 = new Alumno("Pablo", "Perez", "Calle falsa 123", "pablo@ccc.com", 123456789, "123");
+        Alumno alumno2 = new Alumno("Brayan", "Ochoa", "Calle falsa 123", "brayan@ccc.com", 123456789, "123");
 
         List<Persona> ccc = new ArrayList<Persona>();
 
