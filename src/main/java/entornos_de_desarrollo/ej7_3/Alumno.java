@@ -33,7 +33,10 @@ public class Alumno extends Persona{
             System.out.println("NO TIENES NOTAS REGISTRADAS");
         }
     }
+public void aniadirNota(Notas nota){
 
+    this.notas.add(nota);
+}
 
 
     @Override

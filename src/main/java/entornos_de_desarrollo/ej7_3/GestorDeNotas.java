@@ -9,6 +9,11 @@ public class GestorDeNotas {
 
     public static void main(String[] args) {
 
+        menu();
+
+    }
+
+    public static void menu() {
 
         Asignatura asignatura1 = new Asignatura("Matematicas", "Primero");
         Asignatura asignatura2 = new Asignatura("Ingles", "Primero");
@@ -46,7 +51,7 @@ public class GestorDeNotas {
 
             switch (op) {
                 case 1:
-                    inicioSesion(ccc);
+                    inicioSesion(ccc, asignatura);
                     break;
                 case 2:
                     registro(ccc);
@@ -59,7 +64,6 @@ public class GestorDeNotas {
             }
 
         } while (op != 0);
-
 
     }
 
@@ -140,11 +144,14 @@ public class GestorDeNotas {
             Profesor profesor1 = new Profesor(nombre, apellidos, direccion, correo, telefono, contrasenia);
             ccc.add(profesor1);
         }
+        else {
+            System.out.println("CODIGO INCORRECTO");
+        }
 
 
     }
 
-    public static void inicioSesion(List<Persona> ccc) {
+    public static void inicioSesion(List<Persona> ccc, List<Asignatura> asignaturas) {
         System.out.println("INICIAR SESION");
         System.out.println("INTRODUCE TU CORREO");
         Scanner sc = new Scanner(System.in);
@@ -175,8 +182,8 @@ public class GestorDeNotas {
 
                 if (ccc.get(i) instanceof Profesor) {
                     Profesor profesor = (Profesor) ccc.get(i);
-                    System.out.println("1. Ingresar Nota");
-                    System.out.println("2. Ver Notas");
+                    System.out.println("1. Ingresar Nota a un Alumno");
+                    System.out.println("2. Ver Notas de todos los Alumnos");
                     System.out.println("3. Ver Alumnos");
                     System.out.println("4. Ver Profesores");
                     System.out.println("0. Salir");
@@ -192,6 +199,20 @@ public class GestorDeNotas {
                                 System.out.println((j + 1) + ". " + ccc.get(j).getNombre() + " " + ccc.get(j).getApellidos());
                             }
 
+                            System.out.println("selecciona el alumno");
+                            int a = sc.nextInt();
+                            sc.nextLine();
+                            System.out.println("selecciona la asignatura");
+                            for (int k = 0; k < asignaturas.size(); k++) {
+
+                                System.out.println((k + 1) + ". " + asignaturas.get(k).getNombre());
+
+                            }
+                            int b = sc.nextInt();
+                            System.out.println("Introduce la nota");
+                            double c = sc.nextDouble();
+                            sc.nextLine();
+                            ((Alumno) ccc.get(a - 1)).aniadirNota(new Notas(asignaturas.get(b - 1), c));
 
                         }
 
