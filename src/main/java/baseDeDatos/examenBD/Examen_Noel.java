@@ -157,8 +157,7 @@ public class Examen_Noel {
             }
 
 
-            // Cerramos las conexiónes
-
+            // Cerramos las conexiones
             statement.close();
             rs.close();
             connection.close();
