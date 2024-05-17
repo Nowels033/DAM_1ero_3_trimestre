@@ -39,11 +39,6 @@ public class SimulacroExamen {
             menuSQL();
 
 
-
-
-
-
-
             // Cerramos la conexión
             connection.close();
         } catch (SQLException e) {
@@ -78,7 +73,7 @@ public class SimulacroExamen {
                 case 4:
                     eliminarEstudiante(scanner);
                     break;
-                case 5:
+                case 0:
                     System.out.println("Saliendo...");
                     break;
                 default:
@@ -108,6 +103,7 @@ public class SimulacroExamen {
             preparedStatement.setDate(3, Date.valueOf(fechaNacimiento));
             preparedStatement.executeUpdate();
             System.out.println("Estudiante creado exitosamente");
+
         } catch (SQLException e) {
             System.out.println("Error al crear el estudiante: " + e.getMessage());
         }
@@ -144,7 +140,7 @@ public class SimulacroExamen {
         System.out.print("ID del estudiante a actualizar: ");
 
         int id = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline
+        scanner.nextLine();
         System.out.print("Nuevo nombre: ");
         String nombre = scanner.nextLine();
 

@@ -26,8 +26,10 @@ public class VerBDs {
 
            // st.execute(consulta);
 
+
             st.executeUpdate("use bdnueva");
             st.executeUpdate("create table if not exists tablanueva (id int auto_increment primary key,nombre varchar(64))");
+
 
 
         } catch (SQLException e) {
