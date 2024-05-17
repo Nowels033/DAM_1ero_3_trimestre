@@ -50,7 +50,10 @@ public class Examen_Noel {
                 "(6,'Disco Duro Extraible 250 Gb',650,5),(7,'Memoria USB',279,1),(8,'DVD Rom',450,2),(9,'CD Rom',200,2)," +
                 "(10,'Tarjeta de Red',180,3)";
 
+        final String instSQLInsertarArtFab = "insert into ArtFab(nombre_art,nombre_fab,precio,IVA) values(?,?,?,?)";
+
         final String instSQLSelectFinal = "select * from ArtFab";
+
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Conexión exitosa a la base de datos");
@@ -125,7 +128,8 @@ public class Examen_Noel {
                     double IVA = calcularIVA(precio);
 
 
-                    String instSQLInsertarArtFab = "insert into ArtFab(nombre_art,nombre_fab,precio,IVA) values(?,?,?,?)";
+                    //INSERTAMOS LOS DATOS EN LA TABLA ArtFab
+
                     PreparedStatement ps = connection.prepareStatement(instSQLInsertarArtFab);
                     ps.setString(1, nombre_art);
                     ps.setString(2, nombre_fab);
