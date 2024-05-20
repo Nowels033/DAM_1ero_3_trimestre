@@ -15,45 +15,134 @@ de las tablas Empleados y Departamentos.
 
         Nº Empleado Nombre Empleado Salario Nombre Departamento*/
 
+import java.io.*;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Ej2 {
-    public static void main(String[] args) {
-        final String instSQLSelect="select * from personasPaises";
-        String instSQLInsert="INSERT into productos values (4,'pistola',500.99,true)";
-        final String instSQLDelete="delete from productos where codigo=4";
-        final String instSQLUpdate="update personaspaises set edad = edad + 1 where nombrepais ='costa rica'";
-        final String instSQLTable="Create table personasPaises (id int primary key,nombre varchar(30),apellido varchar(40),edad int, nombrePais varchar(40),tamaño varchar(15))";
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+
+
         try {
-            //Class.forName("com.mysql.jbdc.driver");
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream("C:\\dir1\\operaciones.dat"));
+
+            System.out.println("Cuantas veces vas a realizar la operación:  A(alta), B(baja) o M(modificación)");
+            int nOperacions = sc.nextInt();
+
+            for (int i = 0; i < nOperacions; i++) {
+
+                System.out.println("Que operación vas a realizar: A(alta), B(baja) o M(modificación)");
+                System.out.println("Introduce el valor de A, B o M");
+
+                char oper = sc.next().toUpperCase().charAt(0);
+
+                if (oper == 'A' || oper == 'B' || oper == 'M') {
+
+                    dos.writeChar(oper);
+                }
+
+                else {
+                    System.out.println("El valor introducido no es correcto");
+                    i--;
+                }
+
+            }
+
+
 
             Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_programacion", "root", "admin");
             Statement st = miConexion.createStatement();
-            //st.executeUpdate(instSQLInsert);
-            //st.executeUpdate(instSQLDelete);
-            //st.execute(instSQLUpdate);
-           // String insertarDatosSQL = "INSERT INTO PersonasPaises (id,Nombre, Apellido, Edad, NombrePais, Tamaño) " +
-                //    "SELECT p.id,p.Nombre, p.Apellido, p.Edad, pa.Nombre, pa.Tamaño " +
-                 //   "FROM Persona p JOIN Pais pa ON p.Pais = pa.Id";
 
-            // st.execute(instSQLTable);
+            DataInputStream dis = new DataInputStream(new FileInputStream("C:\\dir1\\operaciones.dat"));
 
-           // st.execute(insertarDatosSQL);
+            for (int i = 0; i < nOperacions; i++) {
+
+                char oper = dis.readChar();
+
+                if (oper == 'A') {
+                    System.out.println("Se va a dar de alta un nuevo empleado");
+                    System.out.println("introduce el numero del empleado");
+                    int numeroEmp = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("introduce el apellido");
+                    String apellido = sc.nextLine();
+                    System.out.println("introduce el oficio");
+                    String oficio = sc.nextLine();
+                    System.out.println("introduce el director");
+                    int director = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("introduce la fecha de alta en formato yyyy-mm-dd (guiones inluidos)");
+                    String fechaAlt = sc.nextLine();
+                    System.out.println("introduce el salario");
+                    float salario = sc.nextFloat();
+                    System.out.println("introduce el comision");
+                    float comision = sc.nextFloat();
+                    System.out.println("introduce el numero del departamento");
+                    int deptNo = sc.nextInt();
+                    sc.nextLine();
+
+                   final String sqlInsert = "insert into empleados (emp_no, apellido, oficio, dir, fecha_alt, salario, comision, dept_no) values (" +
+                            numeroEmp+",'"+apellido+"','"+oficio+"',"+director+",'"+fechaAlt+"',"+salario+","+comision+","+deptNo+");";
+
+                    st.executeUpdate(sqlInsert);
+                    System.out.println("el nuevo empleado ha sido dado de alta");
+
+                }
+
+                if (oper == 'B') {
+                    System.out.println("Se va a dar de baja un empleado");
+                    System.out.println("introduce el numero del empleado a dar de baja");
+                    int numeroEmp = sc.nextInt();
+                   final String sqlDelete = "delete from empleados where emp_no = " + numeroEmp+";" ;
+
+                    st.executeUpdate(sqlDelete);
+                    System.out.println(numeroEmp+" ha sido dado de baja");
+                }
+
+                if (oper == 'M') {
+                    System.out.println("MODIFICACION DE SALARIO CON UPDATE");
+
+                    System.out.println("introduce el numero del empleado");
+                    int numeroEmp = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("introduce el porcentaje de aumento");
+                    float porcentaje = sc.nextFloat();
+                    sc.nextLine();
+                   final String sqlUpdate = "update empleados set salario = (salario*"+porcentaje+"/100) + salario where emp_no = "+numeroEmp+";";
+                    st.executeUpdate(sqlUpdate);
+                    System.out.println("el nuevo salario de : "+numeroEmp+" ha sido modificado");
+
+                }
+
+            }
 
 
 
 
 
 
-            ResultSet rs =st.executeQuery(instSQLSelect);
-
+            ResultSet rs =st.executeQuery("select * from empleados");
+            System.out.println("Contenido de la tabla: ");
             while (rs.next()){
 
 
+                int emp_no = rs.getInt("emp_no");
+                String apellido = rs.getString("apellido");
+                String oficio = rs.getString("oficio");
+                int dir = rs.getInt("dir");
+                String fecha_alt = rs.getString("fecha_alt");
+                float salario = rs.getFloat("salario");
+                float comision = rs.getFloat("comision");
+                int dept_no = rs.getInt("dept_no");
+
+                System.out.println("Numero de empleado: "+emp_no+", Apellido: "+apellido+", Oficio: "+oficio+", Director: "+dir+", Fecha de alta: "+fecha_alt+", Salario: "+salario+", Comision: "+comision+", Departamento: "+dept_no);
 
 
 
             }
+            System.out.println("FIN DEL PROGRAMA");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
