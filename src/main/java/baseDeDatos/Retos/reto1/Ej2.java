@@ -77,7 +77,7 @@ public class Ej2 {
                     String fechaAlt = sc.nextLine();
                     System.out.println("introduce el salario");
                     float salario = sc.nextFloat();
-                    System.out.println("introduce el comision");
+                    System.out.println("introduce la comision");
                     float comision = sc.nextFloat();
                     System.out.println("introduce el numero del departamento");
                     int deptNo = sc.nextInt();
